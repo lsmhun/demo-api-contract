@@ -1,0 +1,46 @@
+openapi: 3.0.1
+info:
+  title: Demo Contract - Average Temperature
+  description: 'This is a sample OpenAPI dec'
+  contact:
+    email: lsmhun at github
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: /
+tags:
+  - name: temperature
+    description: Average temperature
+    externalDocs:
+      description: Find out more
+      url: http://github.com/lsmhun/demo-api-contracts
+paths:
+  /api/v1/temperatureByCountryCode/{countryCode}:
+    parameters:
+      - in: path
+        name: countryCode
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - temperature
+      summary: Get Average Temperature by Country code
+      operationId: getAvgTempByCountryCode
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: number
+                format: double
+        400:
+          description: Invalid Country code supplied
+        404:
+          description: Country not found
+        405:
+          description: Validation exception

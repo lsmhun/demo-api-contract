@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd"
+>
+    <changeSet  author="ls"  id="BaseTable">
+        <createTable tableName="temperature">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="temperature_pkey"/>
+            </column>
+            <column  name="country_code"  type="VARCHAR2(2)"/>
+            <column  name="temperature"  type="DOUBLE"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="liquibase-docs" id="loadData-example">
+        <loadData catalogName="cat"
+                  file="/db/changelog/country_avg_temperatures.csv"
+                  quotchar="'"
+                  schemaName="public"
+                  separator=";"
+                  tableName="temperature"
+        >
+            <column header="id"
+                    name="id"
+                    type="NUMERIC"/>
+            <column header="country_code"
+                    name="country_code"
+                    type="STRING"/>
+            <column header="temperature"
+                    name="temperature"
+                    type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
