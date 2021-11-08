@@ -140,7 +140,24 @@
 				<configuration>
 					<baseClassForTests>hu.lsm.demo.contract.server.api.contract.TemperatureContractBase</baseClassForTests>
 					<testFramework>JUNIT5</testFramework>
+					<contractsRepositoryUrl>git://https://github.com/lsmhun/demo-api-contract.git</contractsRepositoryUrl>
+					<contractsMode>REMOTE</contractsMode>
+					<contractDependency>
+						<groupId>${project.groupId}</groupId>
+						<artifactId>${project.artifactId}</artifactId>
+						<version>${project.version}</version>
+					</contractDependency>
 				</configuration>
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<phase>package</phase>-->
+<!--						<goals>-->
+<!--							&lt;!&ndash; By default we will not push the stubs back to SCM,-->
+<!--                            you have to explicitly add it as a goal &ndash;&gt;-->
+<!--							<goal>pushStubsToScm</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
 			</plugin>
 		</plugins>
 	</build>
