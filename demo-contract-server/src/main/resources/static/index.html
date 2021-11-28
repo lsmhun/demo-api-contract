@@ -1,12 +1,60 @@
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contract Demo - Temperature application</title>
+    <style>
+    html
+    {
+      box-sizing: border-box;
+      overflow: -moz-scrollbars-vertical;
+      overflow-y: scroll;
+    }
+    *,
+    *:before,
+    *:after
+    {
+      box-sizing: inherit;
+    }
+
+    body {
+      margin:0;
+      background: #fafafa;
+      font-family: sans-serif;
+      color: #3b4151;
+    }
+    a {
+      text-decoration: none;
+    }
+    ul {
+        list-style-type: circle;
+    }
+    .topbar {
+      padding: 10px 10px;
+      background-color: #1b1b1b;
+      color: #fff;
+    }
+    </style>
+</head>
 <body>
-<ul>
-    <li>
-        <a href="/swagger-ui/index.html">Swagger UI</a>
-    </li>
-    <li>
-        <a href="/h2-console">H2 console</a>
-    </li>
-</ul>
+<div id="header">
+    <div class="topbar">
+        <div class="wrapper">
+            <div class="topbar-wrapper">
+                Country Temperature - Contract demo application
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <ul>
+            <li>
+                <a href="/swagger-ui/index.html">Swagger UI</a>
+            </li>
+            <li>
+                <a href="/h2-console">H2 console</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
 </body>
 </html>

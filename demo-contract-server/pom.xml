@@ -29,6 +29,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
@@ -57,16 +61,6 @@
 			<scope>test</scope>
 		</dependency>
 		<!--SpringFox dependencies -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>3.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>3.0.0</version>
-		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-boot-starter</artifactId>
@@ -99,10 +93,10 @@
 			<artifactId>swagger-annotations</artifactId>
 			<version>1.6.3</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework</groupId>-->
+<!--			<artifactId>spring-web</artifactId>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -140,25 +134,32 @@
 				<configuration>
 					<baseClassForTests>hu.lsm.demo.contract.server.api.contract.TemperatureContractBase</baseClassForTests>
 					<testFramework>JUNIT5</testFramework>
-					<contractsRepositoryUrl>git://https://github.com/lsmhun/demo-api-contract.git</contractsRepositoryUrl>
-					<contractsMode>REMOTE</contractsMode>
-					<contractDependency>
-						<groupId>${project.groupId}</groupId>
-						<artifactId>${project.artifactId}</artifactId>
-						<version>${project.version}</version>
-					</contractDependency>
 				</configuration>
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<phase>package</phase>-->
-<!--						<goals>-->
-<!--							&lt;!&ndash; By default we will not push the stubs back to SCM,-->
-<!--                            you have to explicitly add it as a goal &ndash;&gt;-->
-<!--							<goal>pushStubsToScm</goal>-->
-<!--						</goals>-->
-<!--					</execution>-->
-<!--				</executions>-->
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5.2</version>
+				<configuration>
+					<groupId>${project.groupId}</groupId>
+					<artifactId>${project.artifactId}</artifactId>
+					<version>${project.version}</version>
+					<packaging>jar</packaging>
+					<file>${project.basedir}/target/${project.artifactId}-${project.version}-stubs.jar</file>
+					<generatePom>false</generatePom>
+					<classifier>stubs</classifier>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install-stubs-jar-lib</id>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
