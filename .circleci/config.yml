@@ -23,16 +23,16 @@ jobs:
           command: mvn io.takari:maven:wrapper
       - run:
           name: Build API
-          command: cd demo-contract-api && mvn -B -DskipTests clean install && cd ..
+          command: cd demo-contract-api && ./mvnw -B -DskipTests clean install && cd ..
       - run:
           name: Build Server
-          command: cd demo-contract-server && mvnw verify && cd ..
+          command: cd demo-contract-server && ./mvnw verify && cd ..
       - run:
           name: Adding stubs to local Maven repository
-          command: cd demo-contract-server && mvnw org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file && cd ..
+          command: cd demo-contract-server && ./mvnw org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file && cd ..
       - run:
           name: Build Client
-          command: cd demo-contract-client && mvnw verify && cd ..
+          command: cd demo-contract-client && ./mvnw verify && cd ..
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
