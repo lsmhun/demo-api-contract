@@ -1,0 +1,24 @@
+language: java
+sudo: true
+jdk:
+  - oraclejdk11
+  - openjdk11
+
+cache:
+  directories:
+    - $HOME/.m2
+
+before_install:
+  - chmod +x mvnw
+
+script:
+  - mvn io.takari:maven:wrapper
+  - ./demo-contract-api/mvnw clean install
+  - ./demo-contract-server/mvnw install
+  - ./demo-contract-server/mvnw org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file
+  - ./demo-contract-server/mvnw jacoco:report
+  - ./demo-contract-client/mvnw install
+  - ./demo-contract-client/mvnw jacoco:report
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
